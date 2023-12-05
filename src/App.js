@@ -9,12 +9,9 @@ function App() {
     const [isTokenFound, setTokenFound] = useState(false);
     const [token, setToken] = useState("")
 
-    useEffect(() => {
-        const asyncFetchToken = async () => {
-            setToken(await fetchToken(setTokenFound));
-        }
-        asyncFetchToken().then()
-    })
+    const handleClick = async () => {
+        await setToken(await fetchToken(setTokenFound));
+    }
 
     onMessageListener().then(payload => {
         setNotification({title: payload.notification.title, body: payload.notification.body})
@@ -31,6 +28,7 @@ function App() {
                 {isTokenFound && <h1> Notification permission enabled</h1>}
                 {!isTokenFound && <h1> Need notification permission</h1>}
                 <img src={logo} className="App-logo" alt="logo"/>
+                <button onClick={handleClick}>AAAAAAAAAAAAAAA</button>
                 <p>{token}</p>
             </header>
         </div>
